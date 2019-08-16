@@ -1,0 +1,22 @@
+{
+  "name": "free-mentors",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "gh-pages -d UI"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/singesther/free-mentors.git"
+  },
+  "author": "Sing Esther",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/singesther/free-mentors/issues"
+  },
+  "homepage": "https://singesther.github.io/free-mentors",
+  "dependencies": {
+    "gh-pages": "^2.1.1"
+  }
+}
