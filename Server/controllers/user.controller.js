@@ -1,4 +1,6 @@
 import users from '../models/user.model';
+import mentors from '../models/mentor.model';
+import validateUserSignup from '../helpers/userValidation';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
@@ -7,6 +9,14 @@ dotenv.config();
 
 class UserController {
     static signup(req, res) {
+      const { error } = validateUserSignup.validation(req.body);
+      if (error) {
+        res.status(400).json({
+          status: 400,
+          error: error.details[0].message,
+        });
+        return;
+      }
         const isUserExist = users.find(s => s.email === req.body.email);
 
         if (isUserExist) {
@@ -58,6 +68,62 @@ class UserController {
                 }
             });
             }
+          }
+
+          static signin(req, res) {
+            const isUserExist = users.find(u => u.email === req.body.email);
+            const isMentor = mentors.find(u => u.email === req.body.email);
+        
+            if (!isUserExist && !isMentor) {
+              return res.status(401).json({
+                status: 401,
+                message: "Email not exists"
+              });
+            }
+            if (isUserExist) {
+              const password = bcrypt.compareSync(req.body.password, isUserExist.password);
+              if (!password) {
+                return res.status(401).json({
+                  status: 401,
+                  message: "Password not exists"
+                });
+              }
+              let token = jwt.sign({
+                userId: isUserExist.userId,
+                email: isUserExist.email,
+                isAdmin: isUserExist.isAdmin
+              }, process.env.secret, { expiresIn: '28d' });
+              res.status(200).json({
+                status: 200,
+                token,
+                message: "User is succefully logged in",
+                data: {
+                  email: req.body.email
+                }
+              });
+            } else {
+              const password = bcrypt.compareSync(req.body.password, isMentor.password);
+              if (!password) {
+                return res.status(401).json({
+                  status: 401,
+                  message: "Password not exists"
+                });
+              }
+              let token = jwt.sign({
+                userId: isMentor.userId,
+                email: isMentor.email,
+                isAdmin: isMentor.isAdmin
+              }, process.env.secret, { expiresIn: '28d' });
+              res.status(200).json({
+                status: 200,
+                message: "Mentor is succefully logged in",
+                token,
+                data: { 
+                  email:req.body.email
+                }
+              });
+            }
+        
           }
         }
 //            
