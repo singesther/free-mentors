@@ -1,10 +1,11 @@
+import bcrypt from 'bcrypt';
 const users = [
     {
         id: 1,
         firstName: 'diane',
         lastName: 'kaly',
         email: 'diane@gmail.com',
-        password: 'kigali',
+        password: bcrypt.hashSync('Kigali', 10),
         address: 'kigali',
         bio: 'jbfjdbg',
         occupation: 'nurse',
@@ -17,7 +18,7 @@ const users = [
         firstName: 'diane',
         lastName: 'kaly',
         email: 'dodo@gmail.com',
-        password: 'kigali',
+        password:  bcrypt.hashSync('kigali', 10),
         address: 'kigali',
         bio: 'hbgf',
         occupation: 'nurse',

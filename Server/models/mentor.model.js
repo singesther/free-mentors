@@ -1,10 +1,11 @@
+import bcrypt from 'bcrypt';
 const mentors = [
     {
       mentorId: 1,
       firstName: 'didy',
       lastName: 'Nadidi',
       email: 'kami@gmail.com',
-      password: 'Nadia',
+      password: bcrypt.hashSync('Nadia', 10),
       address: 'Kigali',
       bio: 'Am techleader',
       occupation: 'web developer',
@@ -15,7 +16,7 @@ const mentors = [
       firstName: 'Kamikazi',
       lastName: 'Nadia',
       email: 'wowe@gmail.com',
-      password: 'wowe',
+      password: bcrypt.hashSync('wowe', 10),
       address: 'Kigali',
       bio: 'Am teacher',
       occupation: 'teach',
