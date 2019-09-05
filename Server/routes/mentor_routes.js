@@ -1,10 +1,10 @@
-// import express from 'express';
-// import mentorController from '../controllers/mentor.controller';
-// import userAuth from '../middleware/';
+import express from 'express';
+import mentorController from '../controllers/mentor.controller';
+import userAuth from '../middleware/authUser';
 
-// const router = express.Router();
+const router = express.Router();
 
-// router.get('/', userAuth, mentorController.getAllMentor);
-// router.get('/:mentorId', userAuth, mentorController.getOneMentor);
+router.get('/mentors', userAuth, mentorController.getAllMentor);
+router.get('/mentors/:mentorId', userAuth, mentorController.getOneMentor);
 
-// export default router;
+export default router;
