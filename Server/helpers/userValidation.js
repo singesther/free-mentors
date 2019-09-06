@@ -17,6 +17,14 @@ const validateUserSignup = {
     };
     return Joi.validate(newUser, newUserSchema);
   },
+  validation(newSession) {
+    const newSessionSchema = {
+      mentorId: Joi.number().required(),
+      questions: Joi.string().trim().required(),
+      
+    };
+    return Joi.validate( newSession, newSessionSchema);
+  },
 
 };
 
