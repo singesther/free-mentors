@@ -25,7 +25,7 @@ class MentorController {
       taker[0][i] = result;
     }
     return res.status(200).json({
-      status: 200,
+      status: '200',
       data: taker
     });
   }

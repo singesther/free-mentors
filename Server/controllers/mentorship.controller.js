@@ -6,8 +6,7 @@ import dotenv from 'dotenv';
 class MentorShipController {
   /**
   * Create mentorship session
-  * @param {object} req
-  * @param {object} res
+  
   */
   static createMentorship(req, res) {
     const mentee = req.user;
@@ -52,8 +51,7 @@ class MentorShipController {
 
   /**
   * Accept mentorship session request
-  * @param {object} req
-  * @param {object} res
+  
   */
   static acceptMentorshipRequest(req, res) {
     const getMentor = req.user.email;

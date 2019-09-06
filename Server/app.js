@@ -13,6 +13,8 @@ app.use('/api/v1/auth', userRoutes);
 
  app.use('/api/v1/', mentorRoutes);
  app.use('/api/v1/', mentorshipRoutes);
+//  app.use('/api/v1/', sessionsRoutes);
+ 
  
 
 
